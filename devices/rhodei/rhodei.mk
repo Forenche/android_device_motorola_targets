@@ -17,10 +17,17 @@
 PRODUCT_USES_QCOM_HARDWARE := true
 
 $(call inherit-product, device/motorola/rhodei/device.mk)
-$(call inherit-product, frameworks/native/build/phone-xhdpi-4096-dalvik-heap.mk)
+$(call inherit-product, frameworks/native/build/phone-xhdpi-6144-dalvik-heap.mk)
 $(call inherit-product, $(SRC_TARGET_DIR)/product/aosp_base_telephony.mk)
 
 PRODUCT_DEVICE := rhodei
 PRODUCT_BRAND := motorola
 PRODUCT_MANUFACTURER := motorola
-PRODUCT_MODEL := moto g(62)
+PRODUCT_MODEL := moto g62 5G
+
+PRODUCT_GMS_CLIENTID_BASE := android-motorola
+
+PRODUCT_BUILD_PROP_OVERRIDES += \
+    PRIVATE_BUILD_DESC="rhodei_g-user 11 S2SSI32.18-12-4 ed3325 release-keys"
+
+BUILD_FINGERPRINT := motorola/rhodei_g/rhodei:11/S2SSI32.18-12-4/ed3325:user/release-keys
