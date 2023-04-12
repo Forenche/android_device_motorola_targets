@@ -12,22 +12,6 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-# Common
-include device/motorola/targets/include/common.mk
-
-# Inherit from those products. Most specific first.
-$(call inherit-product, $(SRC_TARGET_DIR)/product/core_64_bit.mk)
-$(call inherit-product, $(SRC_TARGET_DIR)/product/aosp_base_telephony.mk)
-
-# Inherit from the AOSPA configuration.
-$(call inherit-product, vendor/aospa/target/product/aospa-target.mk)
-
-# Kernel
-$(call inherit-product, device/motorola/targets/include/kernel/prebuilt.mk)
-
-# Avoid double inclusion
-ROM_INCLUDES_QCOM_COMMON := true
-
-# Bluetooth
-PRODUCT_SOONG_NAMESPACES += \
-    packages/modules/Bluetooth/android/app
+# Includes
+include device/motorola/targets/devices/rhodei/rhodei.mk
+include device/motorola/targets/rom/aospa.mk
