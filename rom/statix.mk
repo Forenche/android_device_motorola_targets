@@ -33,6 +33,9 @@ $(call inherit-product, $(SRC_TARGET_DIR)/product/telephony_system_ext.mk)
 $(call inherit-product, vendor/statix/config/common.mk)
 $(call inherit-product, vendor/statix/config/gsm.mk)
 
+# Inherit prebuilt Google Camera for Statix
+$(call inherit-product, vendor/gcam/gcam-vendor.mk)
+
 #
 # All components inherited here go to vendor image
 #
