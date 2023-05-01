@@ -14,3 +14,10 @@
 
 # Device
 DEVICE := $(PRODUCT_DEVICE)
+
+# NoNearbySharingOverlay
+PRODUCT_PACKAGES += \
+    NoNearbySharingOverlay
+
+# Utils
+include device/motorola/targets/include/utils.mk
