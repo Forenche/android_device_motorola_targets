@@ -12,7 +12,12 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+TARGET_KERNEL_CLANG_COMPILE := true
+TARGET_KERNEL_NEW_GCC_COMPILE := false
 TARGET_KERNEL_CLANG_VERSION := r383902
 TARGET_KERNEL_CONFIG := vendor/$(DEVICE)_defconfig
-TARGET_KERNEL_LLVM_BINUTILS := false
+KERNEL_CLANG_TRIPLE := CLANG_TRIPLE=aarch64-linux-gnu-
+KERNEL_LD := LD=ld.lld
+TARGET_KERNEL_ADDITIONAL_FLAGS := LLVM=1 LLVM_IAS=1
+TARGET_KERNEL_LLVM_BINUTILS := true
 TARGET_KERNEL_SOURCE := kernel/motorola/msm-$(TARGET_KERNEL_VERSION)

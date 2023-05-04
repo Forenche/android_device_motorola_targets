@@ -12,20 +12,14 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-ifneq (,$(filter 5.4 5.10 5.15, $(TARGET_KERNEL_VERSION)))
-  TARGET_KERNEL_IMAGE_NAME := Image
-else
-  TARGET_KERNEL_IMAGE_NAME := Image.gz
-endif
+# APEX
+MAINLINE_INCLUDE_ART_MODULE := false
+MAINLINE_INCLUDE_BT_MODULE := false
 
-TARGET_PREBUILT_KERNEL := $(TARGET_DEVICE_DIR)-kernel/$(TARGET_KERNEL_IMAGE_NAME)
-TARGET_FORCE_PREBUILT_KERNEL := true
+# Includes
+include device/motorola/targets/devices/rhodei/rhodei.mk
+include device/motorola/targets/rom/yaap.mk
 
-PRODUCT_COPY_FILES += \
-    $(TARGET_PREBUILT_KERNEL):kernel
-
-# Modules
-ifneq ($(BOOT_KERNEL_MODULES),)
-  BOARD_VENDOR_RAMDISK_KERNEL_MODULES := \
-      $(foreach module,$(BOOT_KERNEL_MODULES),$(TARGET_DEVICE_DIR)-kernel/modules/$(module))
-endif
+# Device Model
+PRODUCT_MODEL := moto g62 5G
+PRODUCT_NAME := yaap_rhodei

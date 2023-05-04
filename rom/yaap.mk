@@ -12,20 +12,19 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-ifneq (,$(filter 5.4 5.10 5.15, $(TARGET_KERNEL_VERSION)))
-  TARGET_KERNEL_IMAGE_NAME := Image
-else
-  TARGET_KERNEL_IMAGE_NAME := Image.gz
-endif
+# Common
+include device/motorola/targets/include/common.mk
 
-TARGET_PREBUILT_KERNEL := $(TARGET_DEVICE_DIR)-kernel/$(TARGET_KERNEL_IMAGE_NAME)
-TARGET_FORCE_PREBUILT_KERNEL := true
+# All components inherited here go to system image
+$(call inherit-product, $(SRC_TARGET_DIR)/product/core_64_bit.mk)
+$(call inherit-product, $(SRC_TARGET_DIR)/product/full_base_telephony.mk)
 
-PRODUCT_COPY_FILES += \
-    $(TARGET_PREBUILT_KERNEL):kernel
+# Inherit some common YAAP stuff.
+$(call inherit-product, vendor/yaap/config/common_full_phone.mk)
+TARGET_BOOT_ANIMATION_RES := 1080
 
-# Modules
-ifneq ($(BOOT_KERNEL_MODULES),)
-  BOARD_VENDOR_RAMDISK_KERNEL_MODULES := \
-      $(foreach module,$(BOOT_KERNEL_MODULES),$(TARGET_DEVICE_DIR)-kernel/modules/$(module))
-endif
+# Kernel
+$(call inherit-product, device/motorola/targets/include/kernel/source.mk)
+
+# GApps
+TARGET_BUILD_GAPPS := true
