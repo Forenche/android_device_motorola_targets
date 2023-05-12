@@ -13,11 +13,29 @@
 # limitations under the License.
 
 # Device
-DEVICE := $(PRODUCT_DEVICE)
+## Extract device name from TARGET_PRODUCT
+## Account for target product value containing
+## no prefix
+DEVICE := $(subst _, ,$(TARGET_PRODUCT))
+ifneq ($(words $(DEVICE)), 1)
+  DEVICE := $(subst $() ,_,$(filter-out $(firstword $(DEVICE)),$(DEVICE)))
+endif
 
-# NoNearbySharingOverlay
-PRODUCT_PACKAGES += \
-    NoNearbySharingOverlay
+# Brand
+PRODUCT_BRAND := motorola
+
+# Device
+PRODUCT_DEVICE := $(DEVICE)
+
+# Manufacturer
+PRODUCT_MANUFACTURER := motorola
+
+# Required Inheritance
+$(call inherit-product, $(SRC_TARGET_DIR)/product/full_base_telephony.mk)
+$(call inherit-product, $(SRC_TARGET_DIR)/product/core_64_bit.mk)
 
 # Utils
 include device/motorola/targets/include/utils.mk
+
+# Inherit device makefile
+$(call inherit-product, device/motorola/$(DEVICE)/device.mk)

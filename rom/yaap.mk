@@ -15,10 +15,6 @@
 # Common
 include device/motorola/targets/include/common.mk
 
-# All components inherited here go to system image
-$(call inherit-product, $(SRC_TARGET_DIR)/product/core_64_bit.mk)
-$(call inherit-product, $(SRC_TARGET_DIR)/product/full_base_telephony.mk)
-
 # Inherit some common YAAP stuff.
 $(call inherit-product, vendor/yaap/config/common_full_phone.mk)
 TARGET_BOOT_ANIMATION_RES := 1080
@@ -28,3 +24,5 @@ $(call inherit-product, device/motorola/targets/include/kernel/source.mk)
 
 # GApps
 TARGET_BUILD_GAPPS := true
+
+PRODUCT_NAME := yaap_$(DEVICE)

@@ -15,20 +15,6 @@
 # Common
 include device/motorola/targets/include/common.mk
 
-#
-# All components inherited here go to system image
-#
-$(call inherit-product, $(SRC_TARGET_DIR)/product/core_64_bit.mk)
-$(call inherit-product, $(SRC_TARGET_DIR)/product/mainline_system.mk)
-
-#
-# All components inherited here go to system_ext image
-#
-$(call inherit-product, $(SRC_TARGET_DIR)/product/handheld_system_ext.mk)
-$(call inherit-product, $(SRC_TARGET_DIR)/product/telephony_system_ext.mk)
-
-# All components inherited here go to product image
-#
 # Inherit some common StatixOS stuff.
 $(call inherit-product, vendor/statix/config/common.mk)
 $(call inherit-product, vendor/statix/config/gsm.mk)
@@ -36,16 +22,10 @@ $(call inherit-product, vendor/statix/config/gsm.mk)
 # Inherit prebuilt Google Camera for Statix
 $(call inherit-product, vendor/gcam/gcam-vendor.mk)
 
-#
-# All components inherited here go to vendor image
-#
-# TODO(b/136525499): move *_vendor.mk into the vendor makefile later
-$(call inherit-product, $(SRC_TARGET_DIR)/product/handheld_vendor.mk)
-$(call inherit-product, $(SRC_TARGET_DIR)/product/telephony_vendor.mk)
-$(call inherit-product, $(SRC_TARGET_DIR)/product/aosp_base_telephony.mk)
-
 # Kernel
 $(call inherit-product, device/motorola/targets/include/kernel/prebuilt.mk)
 
 # Required Scripts
 $(warning This ROM requires replace_camera_sepolicy.sh to be ran...)
+
+PRODUCT_NAME := statix_$(DEVICE)
