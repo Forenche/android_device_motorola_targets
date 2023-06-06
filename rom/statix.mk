@@ -19,8 +19,11 @@ include device/motorola/targets/include/common.mk
 $(call inherit-product, vendor/statix/config/common.mk)
 $(call inherit-product, vendor/statix/config/gsm.mk)
 
-# Inherit prebuilt Google Camera for Statix
-$(call inherit-product, vendor/gcam/gcam-vendor.mk)
+# Game Dashboard
+ENABLE_GAMETOOLS := true
+
+# Pixel Launcher
+INCLUDE_PIXEL_LAUNCHER := true
 
 # Kernel
 $(call inherit-product, device/motorola/targets/include/kernel/prebuilt.mk)
