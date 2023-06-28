@@ -25,4 +25,7 @@ $(call inherit-product, device/motorola/targets/include/kernel/source.mk)
 # GApps
 TARGET_BUILD_GAPPS := true
 
+# Blur
+TARGET_ENABLE_BLUR := true
+
 PRODUCT_NAME := yaap_$(DEVICE)
